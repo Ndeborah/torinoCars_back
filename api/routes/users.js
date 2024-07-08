@@ -2,20 +2,23 @@ var express = require('express');
 var router = express.Router();
 const bodyParser = require('body-parser');
 const db = require('../../infrastructure/mysql/MysqlClient');
-const UserRepository = require('../../infrastructure/mysql/UserRepository');
-const UserService = require("../../domain/users/userService");
-const UserController = require("../controllers/UserController");
+const ClienteRepository = require('../../infrastructure/mysql/ClienteRepository');
+const ClienteService = require("../../domain/clientes/clienteService");
+const ClienteController = require("../controllers/ClienteController");
+const {json} = require("express");
 const jsonParser = bodyParser.json();
 
-const userRepository = new UserRepository(db);
-const userService = new UserService(userRepository);
-const userController = new UserController(userService);
+const clienteRepository = new ClienteRepository(db);
+const clienteService = new ClienteService(clienteRepository);
+const clienteController = new ClienteController(clienteService);
 
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-    res.send('respond with a resource');
-});
+/* GET clientes listing. */
+router.get('/', jsonParser, clienteController.listarClientes);
 
-router.post('/', jsonParser, userController.createUser)
+router.post('/', jsonParser, clienteController.createUser);
+
+router.delete('/:id', jsonParser, clienteController.borrarCliente);
+
+router.put('/:id', jsonParser, clienteController.modificarCliente);
 
 module.exports = router;

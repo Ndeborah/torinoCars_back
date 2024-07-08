@@ -1,0 +1,48 @@
+@startuml
+
+Entity Clientes {
+    name      varchar(20) NOT NULL
+    email     varchar(30) NOT NULL
+    phone     int         NOT NULL
+    direccion varchar(30) NOT NULL
+    password  varchar(15) NOT NULL
+    id        int         NOT NULL AUTO_INCREMENT
+}
+
+Entity Autos {
+    patente  varchar(10) NOT NULL
+    marca    varchar(10) NULL
+    modelo   varchar(10) NULL
+    color    varchar(10) NULL
+    PRIMARY KEY (patente)
+    id_users int         NOT NULL
+}
+
+Entity Profesionales {
+    codigoProfesional int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    nombre            varchar(30) NOT NULL,
+}
+
+Entity Servicios {
+    codigo            int AUTO_INCREMENT NOT NULL PRIMARY KEY
+    nombre            varchar(30) NOT NULL
+    tiempoEstimado    int NULL
+    costo decimal
+}
+
+Entity Turnos {
+    nroTurno       int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    fecha          datetime,
+    patenteAuto    varchar(10) NOT NULL,
+    codigoServicio int         NOT NULL,
+    FOREIGN KEY (patenteAuto) REFERENCES cars (patente),
+    FOREIGN KEY (codigoServicio) REFERENCES servicio (codigo)
+}
+
+Clientes ||--|{ Autos
+Profesionales }|--|{ Servicios
+Turnos }|--|| Servicios
+Turnos }|--|| Profesionales
+Turnos }|--|| Autos
+
+@enduml
