@@ -1,5 +1,4 @@
-CREATE
-    DATABASE IF NOT EXISTS torinocars ;
+use mikim_torinocars;
 
 CREATE TABLE clientes
 (
