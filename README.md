@@ -10,7 +10,7 @@ disponibles en el archivo .env.template
 ### Crear
 
 ```shell
-curl --location 'http://localhost:3000/clientes' \
+curl --location 'https://mikim.alwaysdata.net/clientes' \
 --header 'Content-Type: application/json' \
 --data '{
     "name": "manholsolis",
@@ -25,14 +25,14 @@ curl --location 'http://localhost:3000/clientes' \
 ### Listar
 
 ```shell
-curl --location 'http://localhost:3000/clientes' \
+curl --location 'https://mikim.alwaysdata.net/clientes' \
 --data ''
 ```
 
 ### Actualizar
 
 ```shell
-curl --location --request PUT 'http://localhost:3000/clientes/1' \
+curl --location --request PUT 'https://mikim.alwaysdata.net/clientes/1' \
 --header 'Content-Type: application/json' \
 --data '{
     "name": "jota",
@@ -47,6 +47,6 @@ curl --location --request PUT 'http://localhost:3000/clientes/1' \
 ### Borrar
 
 ```shell
-curl --location --request DELETE 'http://localhost:3000/clientes/7' \
+curl --location --request DELETE 'https://mikim.alwaysdata.net/clientes/7' \
 --data ''
 ```
